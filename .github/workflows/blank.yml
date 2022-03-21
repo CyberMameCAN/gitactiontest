@@ -1,0 +1,22 @@
+name: VPS Deploy CI
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: テストページをVPSに自動デプロイ
+        uses: appleboy/ssh-action@master
+        with:
+          key: ${{ secrets.SECRET_KEY }}
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USERNAME}}
+          port: ${{secrets.SSH_PORT}}
+          script: |  # デプロイする時に自動で実行するコマンドを並べる
+            cd /usr/local/data/Docker/compose-demo
+            git pull origin main
+            #source myvenv/bin/activate
+            #docker-compose restart
