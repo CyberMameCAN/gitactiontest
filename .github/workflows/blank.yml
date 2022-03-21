@@ -16,7 +16,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /usr/local/data/Docker/compose-demo
+            cd /usr/local/data/Docker/gitactiontest
             git pull origin main
             #source myvenv/bin/activate
             #docker-compose restart
